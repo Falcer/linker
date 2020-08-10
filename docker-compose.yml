@@ -1,0 +1,21 @@
+version: "3.7"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: app.dockerfile
+      depends_on:
+        - app_db
+    environment:
+      DATABASE_URL: postgres://argadev:123456@app_db/linker?sslmode=disable
+    restart: on-failure
+  app_db:
+    build:
+      context: .
+      dockerfile: db.dockerfile
+    environment:
+      POSTGRES_DB: linker
+      POSTGRES_USER: argadev
+      POSTGRES_PASSWORD: 123456
+    restart: on-failure
