@@ -1,7 +1,8 @@
 package main
 
-import "fmt"
+import "log"
 
 func main() {
-	fmt.Println("Hello World 🔥")
+	appLinker := LinkerRouter()
+	log.Fatal(appLinker.Listen(8080))
 }
